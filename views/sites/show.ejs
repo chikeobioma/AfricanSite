@@ -1,0 +1,79 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Beautiful African Sites</p>
+            <div class="list-group">
+                <li class="list-group-item active">List 1</li>
+                <li class="list-group-item">List 2</li>
+                <li class="list-group-item">List 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= site.image %>"></img>
+                <div class="caption">
+                    <h4 class="pull-right">$<%= site.price.toFixed(2) %>/Night</h4>
+                    <h4><a><%= site.name %></a></h4>
+                    <p><%= site.description %></p>
+                    <p>
+                        <em>Submitted by <%= site.author.username%></em>
+                    </p>
+                    
+                    <% if(currentUser && site.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-warning" href="/sites/<%=site._id%>/edit">Edit</a>
+                        <!--Code below works too-->
+                        <!--<a class="btn btn-warning" href="/sites/<%=site.id%>/edit">Edit</a>-->
+                        
+                        <!--<a class="btn btn-danger" href="/sites/<%=site.id%>/delete">Delete</a>-->
+                        
+                        
+                      
+                        <form class="delete-form" action="/sites/<%= site._id %>?_method=DELETE" method="POST" class="delete" onclick="return confirm('Are you sure you want to delete this site?');">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    
+                    
+                    
+                        <!--<form id="delete-form" action="/sites/<%=site._id %>?_method=DELETE" method="POST">-->
+                        <!--        <input type="submit" class="btn btn-xs btn-danger" value="Delete">-->
+                        <!--</form>-->
+                    
+                    <% } %>
+                    
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                     <a class="btn btn-success" href="/sites/<%=site._id%>/comments/new">Write a review</a>
+                </div>
+                <hr>
+                <% site.comments.forEach(function(comment){ %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong><%= comment.author.username %></strong>
+                        <span class="pull-right">10 days ago</span>
+                        <p>
+                          <%= comment.text %>
+                        </p>
+                        
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-xs btn-warning" href="/sites/<%=site._id%>/comments/<%=comment._id%>/edit">Edit Review</a>
+                        
+                        <form class="delete-form" action="/sites/<%=site._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" onclick="return confirm('Are you sure you want to delete this site?');">
+                            <input type="submit" class="btn btn-xs btn-danger" value="Delete Review"></input>
+                        </form>
+                        <% } %>
+                        <hr>
+
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>

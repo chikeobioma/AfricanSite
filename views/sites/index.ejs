@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+
+    <div class="container">
+        <header class="jumbotron">
+             <h1 class="indexHeader">This is Africa!</h1>    
+             <p class="indexHeader">Here are some of the nice places to consider for your next African adventure </p>
+             <br></br>
+             <div class="text-center">
+             <a class="btn btn-primary btn-lg" href="/sites/new">Add a new site</a>
+             </div>
+        </header>
+        
+        
+        <div class="row text-center" style="display: flex ; flex-wrap: wrap">
+            <% sites.forEach(function(site){ %>
+                <div class="col-md-4 col-sm-6">
+                    <div class="thumbnail">
+                        <a href="/sites/<%= site._id %>">
+                            <div class="parent">
+                                <img class="img" src="<%= site.image %>"></img>
+                            </div>
+                        </a>
+                        <h4 class="caption"><strong><%= site.name %></strong></h4>
+                        <p>
+                            <a href="/sites/<%= site._id %>" class="btn btn-primary">View more</a>
+                        </p>
+                    </div>
+                </div>
+                
+            <% }); %>
+        </div>
+    </div>
+    
+<% include ../partials/footer %>

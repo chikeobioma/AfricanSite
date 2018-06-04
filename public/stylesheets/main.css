@@ -1,0 +1,35 @@
+/*.thumbnail img{*/
+/*    width: 100%;*/
+/*}*/
+
+.thumbnail{
+    padding:0;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.parent {
+    width: 350px; 
+    height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4px;
+}
+
+/* This will style any <img> element in .parent div */
+.parent img {
+   height: 100%;
+   width: 100%;
+}
+
+.indexHeader{
+    text-align: center;
+}
+
+.jumbotron{
+color: black;
+background-color: transparent;
+}

@@ -1,0 +1,21 @@
+<% include ../partials/header %>
+
+    <div class="row">
+    <h2 class="text-center" style="padding:20px"><strong>Review <%=site.name%> </strong></h2>
+        <div style="width:30% ; margin: 0 auto">
+            <form action="/sites/<%= site._id %>/comments" method="POST">
+                
+                <div class=form-group>
+                    <textarea class="form-control" type="text" name="comment[text]" placeholder="Review goes here..."></textarea>   
+                </div>
+
+                <div class=form-group>
+                    <input class="btn btn-primary btn-lg btn-block" type="submit"></input>    
+                </div>
+            </form>
+            <a style="align: center"href="/sites">Back to sites</a>
+        </div>
+    <br></br>
+    </div>
+
+<% include ../partials/footer %>
